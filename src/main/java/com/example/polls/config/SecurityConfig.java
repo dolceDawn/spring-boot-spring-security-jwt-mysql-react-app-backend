@@ -30,7 +30,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	CustomUserDatailsService customUserDatailsService;
+	CustomUserDetailsService customUserDetailsService;
 	
 	@Autowired
 	private JwtAuthenticationEntryPoint unauthorizedHandler;
