@@ -19,23 +19,21 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
-		securedEnabled = true,
-		jsr250Enabled = true,
-		prePostEnabled = true
+        securedEnabled = true,
+        jsr250Enabled = true,
+        prePostEnabled = true
 )
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    @Autowired
+    CustomUserDetailsService customUserDetailsService;
 
-	@Autowired
-	CustomUserDetailsService customUserDetailsService;
-	
-	@Autowired
-	private JwtAuthenticationEntryPoint unauthorizedHandler;
-	
-	@Bean
+    @Autowired
+    private JwtAuthenticationEntryPoint unauthorizedHandler;
+
+    @Bean
     public JwtAuthenticationFilter jwtAuthenticationFilter() {
         return new JwtAuthenticationFilter();
     }
@@ -95,5 +93,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
     }
-	
 }
